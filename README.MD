@@ -1,4 +1,4 @@
-# Ouroboros Prototyp
+# Ouroboros Prototype
 Ouroboros is a network peer discovery protocol prototype implementation.
 
 
