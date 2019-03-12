@@ -18,7 +18,7 @@ public class Main {
     String path = args[0];
     System.out.println("Read file " + path);
     String[] listOfIPsToProbe = readIPfile(path);
-    DiscoverdIPList.getInstance().setIdentity(findMyIPAddress().getHostAddress());
+    DiscoveredIPList.getInstance().setIdentity(findMyIPAddress().getHostAddress());
 
     Thread serverThread = new Thread(new OuroborosUDPServer());
     serverThread.setDaemon(true);

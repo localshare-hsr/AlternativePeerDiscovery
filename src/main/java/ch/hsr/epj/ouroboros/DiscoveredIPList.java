@@ -7,19 +7,19 @@ import java.util.Scanner;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-public class DiscoverdIPList {
+public class DiscoveredIPList {
 
-  private static DiscoverdIPList instance;
+  private static DiscoveredIPList instance;
   private SortedSet<String> setOfDiscoveredIPs;
   private String myIPAddress;
 
-  private DiscoverdIPList() {
+  private DiscoveredIPList() {
     setOfDiscoveredIPs = new TreeSet<>(Comparator.comparing(this::toNumeric));
   }
 
-  public static synchronized DiscoverdIPList getInstance() {
+  public static synchronized DiscoveredIPList getInstance() {
     if (instance == null) {
-      instance = new DiscoverdIPList();
+      instance = new DiscoveredIPList();
     }
     return instance;
   }

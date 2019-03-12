@@ -1,6 +1,6 @@
 package ch.hsr.epj.ouroboros.statemachine;
 
-import ch.hsr.epj.ouroboros.DiscoverdIPList;
+import ch.hsr.epj.ouroboros.DiscoveredIPList;
 
 class IdelState extends Discovery {
 
@@ -17,7 +17,7 @@ class IdelState extends Discovery {
 
   private void waitTillDiscoveryByNextPeer() throws InterruptedException {
 
-    while (!DiscoverdIPList.getInstance().hasNextPeer()) {
+    while (!DiscoveredIPList.getInstance().hasNextPeer()) {
       Thread.sleep(10000);
     }
 

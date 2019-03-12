@@ -9,18 +9,18 @@ import java.lang.reflect.Field;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DiscoverdIPListTest {
+public class DiscoveredIPListTest {
 
   @Before
   public void resetSingleton() throws NoSuchFieldException, IllegalAccessException {
-    Field instance = DiscoverdIPList.class.getDeclaredField("instance");
+    Field instance = DiscoveredIPList.class.getDeclaredField("instance");
     instance.setAccessible(true);
     instance.set(null, null);
   }
 
   @Test
   public void testInsertOneNewIPBelow() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
     ipList.add("192.168.42.40");
     String[] expected = {"192.168.42.40", "192.168.42.42"};
@@ -29,7 +29,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testInsertTwoDescNewIPBelow() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
     ipList.add("192.168.42.40");
     ipList.add("192.168.42.35");
@@ -39,7 +39,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testInsertTwoAscNewIPBelow() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
     ipList.add("192.168.42.35");
     ipList.add("192.168.42.40");
@@ -49,7 +49,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testInsertThreeDescNewIPBelow() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
     ipList.add("192.168.42.40");
     ipList.add("192.168.42.35");
@@ -60,7 +60,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testInsertThreeAscNewIPBelow() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
     ipList.add("192.168.42.30");
     ipList.add("192.168.42.35");
@@ -71,7 +71,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testInsertThreeMixedNewIPBelow() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
     ipList.add("192.168.42.35");
     ipList.add("192.168.42.30");
@@ -82,7 +82,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testInsertOneNewIPAbove() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
     ipList.add("192.168.42.45");
     String[] expected = {"192.168.42.42", "192.168.42.45"};
@@ -91,7 +91,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testInsertTwoDescNewIPAbove() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
     ipList.add("192.168.42.45");
     ipList.add("192.168.42.50");
@@ -101,7 +101,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testInsertTwoAscNewIPAbove() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
     ipList.add("192.168.42.50");
     ipList.add("192.168.42.45");
@@ -111,7 +111,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testInsertThreeDescNewIPAbove() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
     ipList.add("192.168.42.45");
     ipList.add("192.168.42.50");
@@ -122,7 +122,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testInsertThreeAscNewIPAbove() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
     ipList.add("192.168.42.55");
     ipList.add("192.168.42.50");
@@ -133,7 +133,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testInsertThreeMixedNewIPAbove() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
     ipList.add("192.168.42.50");
     ipList.add("192.168.42.55");
@@ -144,7 +144,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testInsertDiverseIPs() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
     ipList.add("192.168.42.5");
     ipList.add("192.168.41.50");
@@ -164,7 +164,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testUpdateIPListTwoEntries() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
 
     String[] updateData = {"192.168.42.40", "192.168.42.42"};
@@ -176,7 +176,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testUpdateIPListOneEntries() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
 
     String[] updateData = {"192.168.42.40"};
@@ -188,7 +188,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testRangeUpdateFromSmallerIP() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
 
     String[] updateData = {
@@ -219,7 +219,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testRangeUpdateFromBiggerIP() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
 
     String[] updateData = {
@@ -245,7 +245,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testRangeUpdateFromSameIP() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
 
     String[] updateData = {
@@ -261,7 +261,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testRangeUpdateFromBiggerIPInSmallSet() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.100.137");
 
     String[] updateData = {
@@ -277,7 +277,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testHasNextPeerNo() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.100.100");
 
     assertFalse(ipList.hasNextPeer());
@@ -285,7 +285,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testHasNextPeerSelfReference() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.100.100");
 
     ipList.add("192.168.100.100");
@@ -295,7 +295,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testHasNextPeerSmaller() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.100.100");
 
     ipList.add("192.168.100.50");
@@ -305,7 +305,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testHasNextPeerBigger() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.100.100");
 
     ipList.add("192.168.100.150");
@@ -315,7 +315,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testGetNextPeerNo() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.100.100");
 
     assertEquals("192.168.100.100", ipList.getNextPeer());
@@ -323,7 +323,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testGetNextPeerSmaller() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.100.100");
 
     String peerIP = "192.168.100.50";
@@ -335,7 +335,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testGetNextPeerBigger() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.100.100");
 
     String peerIP = "192.168.100.150";
@@ -347,7 +347,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testGetNextPeerFromListAbove() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.42");
 
     String[] updateData = {
@@ -368,7 +368,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testGetNextPeerFromList() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.42.67");
 
     String[] updateData = {
@@ -389,7 +389,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testGetNextPeerFromListMixed1() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.100.100");
 
     String[] updateData = {
@@ -402,7 +402,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testGetNextPeerFromListMixed2() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.100.140");
 
     String[] updateData = {
@@ -415,7 +415,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testGetNextPeerFromListMixed3() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.100.141");
 
     String[] updateData = {
@@ -428,7 +428,7 @@ public class DiscoverdIPListTest {
 
   @Test
   public void testGetIdentity() {
-    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    DiscoveredIPList ipList = DiscoveredIPList.getInstance();
     ipList.setIdentity("192.168.100.141");
     assertEquals("192.168.100.141", ipList.getIdentity());
 

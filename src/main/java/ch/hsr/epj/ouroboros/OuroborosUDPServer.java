@@ -18,14 +18,14 @@ public class OuroborosUDPServer extends UDPServer {
   public void respond(DatagramSocket socket, DatagramPacket request) throws IOException {
 
     byte[] requestBody = request.getData();
-    DiscoverdIPList.getInstance().add(request.getAddress().getHostAddress());
+    DiscoveredIPList.getInstance().add(request.getAddress().getHostAddress());
 
     switch (requestBody[0]) {
       case 'D':
         sendMyIPAddress(socket, request);
         break;
       case 'U':
-        // DiscoverdIPList.getInstance().updateRange(request.getAddress().getHostAddress());
+        // DiscoveredIPList.getInstance().updateRange(request.getAddress().getHostAddress());
         sendAllIPAddresses(socket, request);
         break;
       default:
@@ -35,7 +35,7 @@ public class OuroborosUDPServer extends UDPServer {
 
   private void sendMyIPAddress(final DatagramSocket socket, DatagramPacket request)
       throws IOException {
-    String bodyString = DiscoverdIPList.getInstance().getIdentity() + ";";
+    String bodyString = DiscoveredIPList.getInstance().getIdentity() + ";";
     byte[] body = bodyString.getBytes();
     DatagramPacket response =
         new DatagramPacket(body, body.length, request.getAddress(), DEFAULT_PORT);
@@ -66,12 +66,12 @@ public class OuroborosUDPServer extends UDPServer {
     }
 
     String[] dataArray = ipData.toArray(new String[0]);
-    DiscoverdIPList.getInstance().updateCompleteIPList(dataArray);
+    DiscoveredIPList.getInstance().updateCompleteIPList(dataArray);
   }
 
   private String prepareSendingBody() {
     StringBuilder sb = new StringBuilder();
-    for (String s : DiscoverdIPList.getInstance().getArray()) {
+    for (String s : DiscoveredIPList.getInstance().getArray()) {
       sb.append(s);
       sb.append(";");
     }

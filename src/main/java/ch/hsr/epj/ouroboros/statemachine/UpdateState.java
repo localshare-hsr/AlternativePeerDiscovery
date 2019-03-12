@@ -1,6 +1,6 @@
 package ch.hsr.epj.ouroboros.statemachine;
 
-import ch.hsr.epj.ouroboros.DiscoverdIPList;
+import ch.hsr.epj.ouroboros.DiscoveredIPList;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -23,8 +23,8 @@ class UpdateState extends Discovery {
 
   private void getUpdateFromNextPeer() throws IOException, InterruptedException {
     String nextPeer;
-    while (DiscoverdIPList.getInstance().hasNextPeer()) {
-      nextPeer = DiscoverdIPList.getInstance().getNextPeer();
+    while (DiscoveredIPList.getInstance().hasNextPeer()) {
+      nextPeer = DiscoveredIPList.getInstance().getNextPeer();
       System.out.println("  - get updates from " + nextPeer);
 
       try (DatagramSocket datagramSocket = new DatagramSocket(0)) {
@@ -38,7 +38,7 @@ class UpdateState extends Discovery {
 
 
       } catch (SocketException e) {
-//      DiscoverdIPList.getInstance().removePeer(nextPeer);
+//      DiscoveredIPList.getInstance().removePeer(nextPeer);
       }
 
       Thread.sleep(9000);

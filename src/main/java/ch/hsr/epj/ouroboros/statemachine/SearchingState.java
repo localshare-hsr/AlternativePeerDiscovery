@@ -1,6 +1,6 @@
 package ch.hsr.epj.ouroboros.statemachine;
 
-import ch.hsr.epj.ouroboros.DiscoverdIPList;
+import ch.hsr.epj.ouroboros.DiscoveredIPList;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -22,12 +22,12 @@ class SearchingState extends Discovery {
 
   private void searchNetwork() throws InterruptedException {
     try {
-      startNeworkScan();
+      startNetworkScan();
     } catch (IOException e) {
       e.printStackTrace();
     }
 
-    boolean foundOtherPeer = DiscoverdIPList.getInstance().hasNextPeer();
+    boolean foundOtherPeer = DiscoveredIPList.getInstance().hasNextPeer();
 
     if (foundOtherPeer) {
       state = new UpdateState();
@@ -36,7 +36,7 @@ class SearchingState extends Discovery {
     }
   }
 
-  private void startNeworkScan() throws IOException, InterruptedException {
+  private void startNetworkScan() throws IOException, InterruptedException {
 
     Thread.sleep(200); // small delay to start up the listening server first
     DatagramSocket datagramSocket = new DatagramSocket(0);
@@ -49,7 +49,7 @@ class SearchingState extends Discovery {
       datagramSocket.send(request);
       Thread.sleep(100);
 
-      if (DiscoverdIPList.getInstance().hasNextPeer()) {
+      if (DiscoveredIPList.getInstance().hasNextPeer()) {
         return;
       }
     }
@@ -61,7 +61,7 @@ class SearchingState extends Discovery {
     int positionOfMyAddress = 0;
 
     for (int i = 0; i < listOfIps.length; i++) {
-      if (listOfIps[i].equals(DiscoverdIPList.getInstance().getIdentity())) {
+      if (listOfIps[i].equals(DiscoveredIPList.getInstance().getIdentity())) {
         positionOfMyAddress = i;
         break;
       }
