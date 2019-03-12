@@ -425,4 +425,12 @@ public class DiscoverdIPListTest {
 
     assertEquals("192.168.100.100", ipList.getNextPeer());
   }
+
+  @Test
+  public void testGetIdentity() {
+    DiscoverdIPList ipList = DiscoverdIPList.getInstance();
+    ipList.setIdentity("192.168.100.141");
+    assertEquals("192.168.100.141", ipList.getIdentity());
+
+  }
 }
