@@ -8,9 +8,36 @@ In a non broad-/multicast network Ouroboros aime is to find other peers which ru
 ## Limitations
 The current version only supports finding and growing functionality but no capabilities to shrink by identifying missing peers.
 
+This limitation comes from the usage of UDP. Possible mitigation's can be implemented with timers or by switching to TCP for the periodic update process. An easier and straight forward approach would be to restart the search process after a certain amount of time.
+
+
 ## How the protocol works
-The protocol knows three stats: SEARCHING, IDLE and UPDATE. Once the protocol is started SEARCHING will be set active. UDP datagrams to port 8640 will be send one by one to next higher ip address (from its own host ip address). If the last messages's peer ip address is equal to its own host's ip address the searching process stops and the state changes to IDEL. This means know other peer is online. If an other peer is found the state changes to UPDATE. From know on the host updates its list of known ip addresses from this found peer.
+The protocol knows three stats: SEARCHING, IDLE and UPDATE. Once the protocol is started SEARCHING will be set active. UDP datagrams to port 8640/udp will be send one by one to next higher ip address (from its own host ip address). If the last messages's peer ip address is equal to its own host's ip address the searching process stops and the state changes to IDEL. This means know other peer is online. If an other peer is found the state changes to UPDATE. From know on the host updates its list of known ip addresses from this found peer.
 While in IDLE the state changes to UPDATE as soon as a discovery message from an other (new) peer in the same network is received. Once in IDLE or UPDATE there is no way back to SEARCHING.
+
+
+```
+                            +-----------------+
+                            |                 |
+             +--------------+    SEARCHING    +------------+
+             |              |                 |            |
+             |              +-----------------+            |
+No Other     |                                             |    Other Peer
+Peer Found   |                                             |    Found
+             |                                             |
+             |                 Other Peer                  |
+             |                 Found Me                    |
+       +-----v------+                               +------v-------+
+       |            +------------------------------->              |
+       |    IDEL    |                               |    UPDATE    |
+       |            <-------------------------------+              |
+       +------------+                               +--------------+
+                               All Other
+                               Peer Lost
+```
+
+The state change from UPDATE to IDLE is not yet implemented.
+
 
 ### Messages
 
