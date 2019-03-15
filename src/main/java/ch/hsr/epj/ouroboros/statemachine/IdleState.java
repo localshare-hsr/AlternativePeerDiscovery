@@ -2,11 +2,11 @@ package ch.hsr.epj.ouroboros.statemachine;
 
 import ch.hsr.epj.ouroboros.DiscoveredIPList;
 
-class IdelState extends Discovery {
+class IdleState extends Discovery {
 
-  private static final String STATE_NAME = "IDEL";
+  private static final String STATE_NAME = "IDLE";
 
-  IdelState() {
+  IdleState() {
     System.out.println("change state:  ===> " + STATE_NAME);
     try {
       waitTillDiscoveryByNextPeer();

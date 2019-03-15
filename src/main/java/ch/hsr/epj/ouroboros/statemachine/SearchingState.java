@@ -32,7 +32,7 @@ class SearchingState extends Discovery {
     if (foundOtherPeer) {
       state = new UpdateState();
     } else {
-      state = new IdelState();
+      state = new IdleState();
     }
   }
 

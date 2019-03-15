@@ -45,7 +45,7 @@ class UpdateState extends Discovery {
 
     }
 
-    state = new IdelState();
+    state = new IdleState();
   }
 
 }
