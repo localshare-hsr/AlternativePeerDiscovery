@@ -29,7 +29,7 @@ Peer Found   |                                             |    Found
              |                 Found Me                    |
        +-----v------+                               +------v-------+
        |            +------------------------------->              |
-       |    IDEL    |                               |    UPDATE    |
+       |    IDLE    |                               |    UPDATE    |
        |            <-------------------------------+              |
        +------------+                               +--------------+
                                All Other
@@ -47,4 +47,11 @@ All messages are transferred in byte format.
 - UPDATE: Client sends `Update` messages to the next peer and receives a list of new ip addresses from its peer `192.168.42.50;192.198.42.23;`
 
 
+## How to use it
 
+1. Clone the repository
+2. At it to your favorite IDE
+3. Start maven lifecycle 'package'
+4. From within the 'target' folder start the application with a list of ip addresses in your local network: `java -jar Ouroboros-1.0-SNAPSHOT.jar ip.list`
+
+You can build your own ip adress list with `nmap -sL 192.168.1.0/24`
