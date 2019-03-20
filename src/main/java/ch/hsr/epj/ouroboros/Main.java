@@ -1,60 +1,16 @@
 package ch.hsr.epj.ouroboros;
 
-import ch.hsr.epj.ouroboros.statemachine.Discovery;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public class Main {
 
-  public static void main(String[] args) throws IOException, InterruptedException {
-    System.out.println("Hello Ouroboros");
+  public static void main(String[] args) throws InterruptedException {
 
-    String path = args[0];
-    System.out.println("Read file " + path);
-    String[] listOfIPsToProbe = readIPfile(path);
-    DiscoveredIPList.getInstance().setIdentity(findMyIPAddress().getHostAddress());
+    DiscoveryIF discovery = new ch.hsr.epj.ouroboros.discovery.Discovery();
 
-    Thread serverThread = new Thread(new OuroborosUDPServer());
-    serverThread.setDaemon(true);
-    serverThread.start();
-    Discovery discovery = new Discovery();
-    discovery.addListOfIPsToScan(listOfIPsToProbe);
-    Thread discoveryThread = new Thread(discovery);
-    discoveryThread.setDaemon(true);
-    discoveryThread.start();
-
-    // block main thread
-    serverThread.join();
-  }
-
-  private static InetAddress findMyIPAddress() {
-    InetAddress myIP = null;
-    Socket socket = new Socket();
-    try {
-      socket.connect(new InetSocketAddress("example.com", 80));
-      myIP = InetAddress.getByName(socket.getLocalAddress().getHostAddress());
-    } catch (IOException e) {
-      e.printStackTrace();
+    while (true) {
+      System.out.println(Arrays.toString(discovery.getIPasList()));
+      Thread.sleep(7500);
     }
-
-    return myIP;
-  }
-
-  private static String[] readIPfile(String filename) throws IOException {
-    FileReader fileReader = new FileReader(filename);
-    BufferedReader bufferedReader = new BufferedReader(fileReader);
-    List<String> lines = new ArrayList<>();
-    String line;
-    while ((line = bufferedReader.readLine()) != null) {
-      lines.add(line);
-    }
-    bufferedReader.close();
-    return lines.toArray(new String[0]);
   }
 }

@@ -1,4 +1,4 @@
-package ch.hsr.epj.ouroboros;
+package ch.hsr.epj.ouroboros.discovery;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

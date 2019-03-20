@@ -1,12 +1,12 @@
 package ch.hsr.epj.ouroboros.statemachine;
 
-import ch.hsr.epj.ouroboros.DiscoveredIPList;
+import ch.hsr.epj.ouroboros.discovery.DiscoveredIPList;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-class SearchingState extends Discovery {
+class SearchingState extends NetworkDiscovery {
 
   private static final String STATE_NAME = "SEARCHING";
   private static final int PORT = 8640;
@@ -40,7 +40,7 @@ class SearchingState extends Discovery {
 
     Thread.sleep(200); // small delay to start up the listening server first
     DatagramSocket datagramSocket = new DatagramSocket(0);
-    byte[] buffer = "Discovery".getBytes();
+    byte[] buffer = "DiscoveryIF".getBytes();
 
     for (String s : startIP()) {
 

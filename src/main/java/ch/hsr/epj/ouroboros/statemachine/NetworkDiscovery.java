@@ -1,15 +1,15 @@
 package ch.hsr.epj.ouroboros.statemachine;
 
-public class Discovery implements Runnable {
+public class NetworkDiscovery implements Runnable {
 
-  Discovery state;
+  NetworkDiscovery state;
   static String[] listOfIps;
 
-  public Discovery() {
+  public NetworkDiscovery() {
   }
 
   public void addListOfIPsToScan(String[] listOfIps) {
-    Discovery.listOfIps = listOfIps;
+    NetworkDiscovery.listOfIps = listOfIps;
   }
 
   @Override

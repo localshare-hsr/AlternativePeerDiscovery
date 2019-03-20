@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import ch.hsr.epj.ouroboros.discovery.DiscoveredIPList;
 import java.lang.reflect.Field;
 import org.junit.Before;
 import org.junit.Test;

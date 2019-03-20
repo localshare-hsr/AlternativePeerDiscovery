@@ -1,4 +1,4 @@
-package ch.hsr.epj.ouroboros;
+package ch.hsr.epj.ouroboros.discovery;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -24,7 +24,7 @@ public class DiscoveredIPList {
     return instance;
   }
 
-  synchronized void setIdentity(final String myIPAddress) {
+  public synchronized void setIdentity(final String myIPAddress) {
     this.myIPAddress = myIPAddress;
     setOfDiscoveredIPs.add(myIPAddress);
   }
@@ -42,7 +42,7 @@ public class DiscoveredIPList {
    *
    * @param newIPList List of known ip addresses
    */
-  synchronized void updateCompleteIPList(final String[] newIPList) {
+  public synchronized void updateCompleteIPList(final String[] newIPList) {
     /*    setOfDiscoveredIPs = new TreeSet<>(Comparator.comparing(this::toNumeric));
     setOfDiscoveredIPs.add(myIPAddress);
     setOfDiscoveredIPs.addAll(Arrays.asList(newIPList));*/
@@ -50,7 +50,7 @@ public class DiscoveredIPList {
     Collections.addAll(setOfDiscoveredIPs, newIPList);
   }
 
-  synchronized void updateRange(final String newIPAddress) {
+  public synchronized void updateRange(final String newIPAddress) {
     if (newIPAddress.equals(myIPAddress)) {
       return;
     }
@@ -93,11 +93,11 @@ public class DiscoveredIPList {
     return currentIP;
   }
 
-  synchronized void add(final String newIPAddress) {
+  public synchronized void add(final String newIPAddress) {
     setOfDiscoveredIPs.add(newIPAddress);
   }
 
-  synchronized String[] getArray() {
+  public synchronized String[] getArray() {
     return setOfDiscoveredIPs.toArray(new String[0]);
   }
 

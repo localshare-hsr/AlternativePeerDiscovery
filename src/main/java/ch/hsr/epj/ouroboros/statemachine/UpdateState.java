@@ -1,13 +1,13 @@
 package ch.hsr.epj.ouroboros.statemachine;
 
-import ch.hsr.epj.ouroboros.DiscoveredIPList;
+import ch.hsr.epj.ouroboros.discovery.DiscoveredIPList;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 
-class UpdateState extends Discovery {
+class UpdateState extends NetworkDiscovery {
 
   private static final String STATE_NAME = "UPDATE";
   private static final int PORT = 8640;
@@ -36,16 +36,13 @@ class UpdateState extends Discovery {
         DatagramPacket request = new DatagramPacket(buffer, buffer.length, targetAddress, PORT);
         datagramSocket.send(request);
 
-
       } catch (SocketException e) {
-//      DiscoveredIPList.getInstance().removePeer(nextPeer);
+        //      DiscoveredIPList.getInstance().removePeer(nextPeer);
       }
 
       Thread.sleep(9000);
-
     }
 
     state = new IdleState();
   }
-
 }

@@ -1,8 +1,8 @@
 package ch.hsr.epj.ouroboros.statemachine;
 
-import ch.hsr.epj.ouroboros.DiscoveredIPList;
+import ch.hsr.epj.ouroboros.discovery.DiscoveredIPList;
 
-class IdleState extends Discovery {
+class IdleState extends NetworkDiscovery {
 
   private static final String STATE_NAME = "IDLE";
 
